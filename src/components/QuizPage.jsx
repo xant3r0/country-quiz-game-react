@@ -2,9 +2,11 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 import Button from "./UI/button/Button"
 import classes from "./styles/quizpage.module.css"
-import { useEffect } from "react";
+import { useEffect} from "react";
 
 const QuizPage = ({ quiz, currentQuestion, totalQuestions, setCurrentQuestion, setAppState, setUserAnswer, userAnswers, result, selectedStyle, setSelectedStyle,resetData}) => {
+
+    const btnCoord = [[1,2,1,2],[1,2,3,4],[3,4,1,2],[3,4,3,4]];
 
     useEffect(() => {
         if (currentQuestion > totalQuestions) {
@@ -40,98 +42,37 @@ const QuizPage = ({ quiz, currentQuestion, totalQuestions, setCurrentQuestion, s
                 <h1 className={classes.question}>{quiz[currentQuestion - 1].question}</h1>
                 <div className={classes.flexCenter}>
                     <div className={classes.answersGrid}>
-                        <Button
-                            style={{
-                                gridRowStart: 1,
-                                gridRowEnd: 2,
-                                gridColumnStart: 1,
-                                gridColumnEnd: 2
-                            }}
-                            onClick={() => {
-                                setUserAnswer(() => {
-                                    let arr = [...userAnswers];
-                                    arr[currentQuestion - 1] = quiz[currentQuestion - 1].answers[0];
-                                    return arr;
-                                })
-                                setSelectedStyle(() => {
-                                    let selected = [...selectedStyle];
-                                    selected[currentQuestion - 1] = 0;
-                                    return selected;
-                                });
-                            }}
-                            className={selectedStyle[currentQuestion - 1] === 0 ? classes.selected : classes.btn}
-                        >
-                            {quiz[currentQuestion - 1].answers[0]}
-                        </Button>
-                        <Button
-                            style={{
-                                gridRowStart: 1,
-                                gridRowEnd: 2,
-                                gridColumnStart: 3,
-                                gridColumnEnd: 4
-                            }}
-                            onClick={() => {
-                                setUserAnswer(() => {
-                                    let arr = [...userAnswers];
-                                    arr[currentQuestion - 1] = quiz[currentQuestion - 1].answers[1];
-                                    return arr;
-                                })
-                                setSelectedStyle(() => {
-                                    let selected = [...selectedStyle];
-                                    selected[currentQuestion - 1] = 1;
-                                    return selected;
-                                });
-                            }}
-                            className={selectedStyle[currentQuestion - 1] === 1 ? classes.selected : classes.btn}
-                        >
-                            {quiz[currentQuestion - 1].answers[1]}
-                        </Button>
-                        <Button
-                            style={{
-                                gridRowStart: 3,
-                                gridRowEnd: 4,
-                                gridColumnStart: 1,
-                                gridColumnEnd: 2
-                            }}
-                            onClick={() => {
-                                setUserAnswer(() => {
-                                    let arr = [...userAnswers];
-                                    arr[currentQuestion - 1] = quiz[currentQuestion - 1].answers[2];
-                                    return arr;
-                                })
-                                setSelectedStyle(() => {
-                                    let selected = [...selectedStyle];
-                                    selected[currentQuestion - 1] = 2;
-                                    return selected;
-                                });
-                            }}
-                            className={selectedStyle[currentQuestion - 1] === 2 ? classes.selected : classes.btn}
-                        >
-                            {quiz[currentQuestion - 1].answers[2]}
-                        </Button>
-                        <Button
-                            style={{
-                                gridRowStart: 3,
-                                gridRowEnd: 4,
-                                gridColumnStart: 3,
-                                gridColumnEnd: 4
-                            }}
-                            onClick={() => {
-                                setUserAnswer(() => {
-                                    let arr = [...userAnswers];
-                                    arr[currentQuestion - 1] = quiz[currentQuestion - 1].answers[3];
-                                    return arr;
-                                })
-                                setSelectedStyle(() => {
-                                    let selected = [...selectedStyle];
-                                    selected[currentQuestion - 1] = 3;
-                                    return selected;
-                                });
-                            }}
-                            className={selectedStyle[currentQuestion - 1] === 3 ? classes.selected : classes.btn}
-                        >
-                            {quiz[currentQuestion - 1].answers[3]}
-                        </Button>
+                        {btnCoord.map((el,index) => (
+                            <Button
+                                style={
+                                    {
+                                        gridRowStart: el[0],
+                                        gridRowEnd: el[1],
+                                        gridColumnStart: el[2],
+                                        gridColumnEnd: el[3]
+                                    }
+                                }
+
+                                onClick={() => {
+                                    setUserAnswer(() => {
+                                        let arr = [...userAnswers];
+                                        arr[currentQuestion - 1] = quiz[currentQuestion - 1].answers[index];
+                                        return arr;
+                                    });
+                                    setSelectedStyle(() => {
+                                        let selected = [...selectedStyle];
+                                        selected[currentQuestion - 1] = index;
+                                        return selected;
+                                    });
+                                }}
+
+                                className={selectedStyle[currentQuestion - 1] === index ? classes.selected : classes.btn}
+
+                                key={index}
+                            >
+                                {quiz[currentQuestion - 1].answers[index]}
+                            </Button>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -139,6 +80,81 @@ const QuizPage = ({ quiz, currentQuestion, totalQuestions, setCurrentQuestion, s
         </div>
     )
 };
+
+/*
+<Button
+                                    style={
+                                        gridRowStart: el[0],
+                                        gridRowEnd: el[1],
+                                        gridColumnStart: el[2],
+                                        gridColumnEnd: el[3]
+                                    }
+                                    onClick={() => {
+                                        setUserAnswer(() => {
+                                            let arr = [...userAnswers];
+                                            arr[currentQuestion - 1] = quiz[currentQuestion - 1].answers[index];
+                                            return arr;
+                                        });
+                                        setSelectedStyle(() => {
+                                            let selected = [...selectedStyle];
+                                            selected[currentQuestion - 1] = index;
+                                            return selected;
+                                        });
+                                    }}
+                                    className={selectedStyle[currentQuestion - 1] === index ? classes.selected : classes.btn}
+                                >
+                                    {quiz[currentQuestion - 1].answers[index]}
+                                </Button>
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default QuizPage;
 /*import NavBar from "./NavBar";
@@ -249,3 +265,101 @@ const QuizPage = ({ quiz, currentQuestion, totalQuestions, setCurrentQuestion, s
 };
 
 export default QuizPage;*/
+
+
+
+/*
+<Button
+                            style={{
+                                gridRowStart: 1,
+                                gridRowEnd: 2,
+                                gridColumnStart: 1,
+                                gridColumnEnd: 2
+                            }}
+                            onClick={() => {
+                                setUserAnswer(() => {
+                                    let arr = [...userAnswers];
+                                    arr[currentQuestion - 1] = quiz[currentQuestion - 1].answers[0];
+                                    return arr;
+                                })
+                                setSelectedStyle(() => {
+                                    let selected = [...selectedStyle];
+                                    selected[currentQuestion - 1] = 0;
+                                    return selected;
+                                });
+                            }}
+                            className={selectedStyle[currentQuestion - 1] === 0 ? classes.selected : classes.btn}
+                        >
+                            {quiz[currentQuestion - 1].answers[0]}
+                        </Button>
+                        <Button
+                            style={{
+                                gridRowStart: 1,
+                                gridRowEnd: 2,
+                                gridColumnStart: 3,
+                                gridColumnEnd: 4
+                            }}
+                            onClick={() => {
+                                setUserAnswer(() => {
+                                    let arr = [...userAnswers];
+                                    arr[currentQuestion - 1] = quiz[currentQuestion - 1].answers[1];
+                                    return arr;
+                                })
+                                setSelectedStyle(() => {
+                                    let selected = [...selectedStyle];
+                                    selected[currentQuestion - 1] = 1;
+                                    return selected;
+                                });
+                            }}
+                            className={selectedStyle[currentQuestion - 1] === 1 ? classes.selected : classes.btn}
+                        >
+                            {quiz[currentQuestion - 1].answers[1]}
+                        </Button>
+                        <Button
+                            style={{
+                                gridRowStart: 3,
+                                gridRowEnd: 4,
+                                gridColumnStart: 1,
+                                gridColumnEnd: 2
+                            }}
+                            onClick={() => {
+                                setUserAnswer(() => {
+                                    let arr = [...userAnswers];
+                                    arr[currentQuestion - 1] = quiz[currentQuestion - 1].answers[2];
+                                    return arr;
+                                })
+                                setSelectedStyle(() => {
+                                    let selected = [...selectedStyle];
+                                    selected[currentQuestion - 1] = 2;
+                                    return selected;
+                                });
+                            }}
+                            className={selectedStyle[currentQuestion - 1] === 2 ? classes.selected : classes.btn}
+                        >
+                            {quiz[currentQuestion - 1].answers[2]}
+                        </Button>
+                        <Button
+                            style={{
+                                gridRowStart: 3,
+                                gridRowEnd: 4,
+                                gridColumnStart: 3,
+                                gridColumnEnd: 4
+                            }}
+                            onClick={() => {
+                                setUserAnswer(() => {
+                                    let arr = [...userAnswers];
+                                    arr[currentQuestion - 1] = quiz[currentQuestion - 1].answers[3];
+                                    return arr;
+                                })
+                                setSelectedStyle(() => {
+                                    let selected = [...selectedStyle];
+                                    selected[currentQuestion - 1] = 3;
+                                    return selected;
+                                });
+                            }}
+                            className={selectedStyle[currentQuestion - 1] === 3 ? classes.selected : classes.btn}
+                        >
+                            {quiz[currentQuestion - 1].answers[3]}
+                        </Button>
+
+*/
