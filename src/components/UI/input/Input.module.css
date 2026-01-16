@@ -1,0 +1,25 @@
+.input {
+    background-color: #272C54;
+    border: none;
+    border-radius: 5px;
+    width:60px;
+    height:35px;
+    text-align: center;
+    vertical-align: middle;
+    padding:10px;
+}
+
+.input::placeholder {
+    color:#ffffff;
+    text-align: center;
+}
+
+.input:focus {
+    outline: none;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

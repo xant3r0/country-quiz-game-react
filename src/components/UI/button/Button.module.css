@@ -1,0 +1,19 @@
+.btn {
+    width:auto;
+    height:auto;
+    background: linear-gradient(90deg, #FF6FB5, #8E44AD);
+    border: none;
+    border-radius: 5px;
+    padding:10px 10px;
+    box-sizing: border-box;
+    word-break: break-word;
+}
+
+.selected {
+    width:auto;
+    height:auto;
+    background: linear-gradient(90deg, #B3397A, #4A235A);
+    border: none;
+    border-radius: 5px;
+    padding:10px 10px;
+}

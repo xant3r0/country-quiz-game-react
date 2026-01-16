@@ -1,0 +1,17 @@
+.quizResultsSec {
+    width:1000px;
+    height:600px;
+    background-color: #343963;
+    border-radius: 15px;
+    padding:50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:35px;
+    justify-content: center;
+}
+
+.quizCongrats {
+    height: 120px;
+    width: 120px;
+}
