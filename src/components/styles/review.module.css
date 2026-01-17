@@ -1,0 +1,77 @@
+.review {
+    height:fit-content;
+    width:70vw;
+    background-color: #343963;
+}
+
+.reviewBar { 
+    width: 70vw; 
+    padding: 3vh 0;
+}
+
+.question {
+    background-color: #E5E5E5;
+    display: flex;
+    justify-content: space-evenly;
+    height:6vh;
+    align-items: center;
+}
+
+.p {
+    color:#000000;
+}
+
+.btnGoTo{
+    background-color:transparent;
+    border:none;
+    outline: none;
+    height:fit-content;
+    width: fit-content;
+}
+
+.checked {
+    height:2vh;
+    width: 2vh;
+}
+
+.flagged {
+    height:2vh;
+    width: 2vh;
+}
+
+.nAnswer {
+    height:2vh;
+    width: 2vh;
+    background-color: #808080;
+    border-radius: 3px;
+}   
+
+.h {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    text-align: center;
+}
+
+.upper {
+    display:grid;
+    grid-template-columns:calc(100% / 3) calc(100% / 3) calc(100% / 3);
+    grid-template-rows: fit-content;
+}
+
+.hrStyle {
+    display: flex;
+    justify-content: center;
+}
+
+.legend {
+    display: flex;
+    gap:5px;
+}
+
+.legendParent {
+    display: flex;
+    justify-content: center;
+    gap:20px;
+    margin-top:3vh;
+}
+/*#FFFFFF #E5E5E5 #00C853 #D32F2F #808080*/

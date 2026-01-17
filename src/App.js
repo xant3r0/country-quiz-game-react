@@ -1,9 +1,10 @@
 import HomePage from "./components/HomePage";
-import QuizPage from "./components/QuizPage"
+import QuizPage from "./components/QuizPage";
 import "./components/styles/style.css";
 import { useState } from "react"
 import QuizResults from "./components/QuizResults";
 import axios from "axios";
+import Review from "./components/Review";
 
 function App() {
 
@@ -18,18 +19,20 @@ function App() {
   };
 
   let [inputValue,setInputValue] = useState("");
-  let [appState,setAppState] = useState("home");                 //home | quiz | result
+  let [appState,setAppState] = useState("home");                 //home | quiz | result | review
   let [quiz,setQuiz] = useState([]);
   let [currentQuestion,setCurrentQuestion] = useState(1);
   let [totalQuestions,setTotalQuestions] = useState(0);
   let [correctAnswers,setCorrectAnswers] = useState(0);
   let [userAnswers,setUserAnswers] = useState([]);
   let [selectedStyle,setSelectedStyle] = useState([]);
+  let [userFlags,setUserFlags] = useState([]);
 
   const resetData = () => {
     alert("You reseted the answers, be careful before submition!!!");
       setSelectedStyle(new Array(totalQuestions).fill(null));
       setUserAnswers(new Array(totalQuestions).fill(""));
+      setUserFlags(new Array(totalQuestions).fill(""));
       setCurrentQuestion(1);
   };
 
@@ -49,6 +52,7 @@ function App() {
     setTotalQuestions(parseInt(inputValue));
     setUserAnswers(new Array(parseInt(inputValue)).fill(""));
     setSelectedStyle(new Array(parseInt(inputValue)).fill(null));
+    setUserFlags(new Array(parseInt(inputValue)).fill(""));
     setCorrectAnswers(0);
     setCurrentQuestion(1);
   } catch {
@@ -74,6 +78,7 @@ function App() {
           setTotalQuestions(parseInt(inputValue));
           setUserAnswers(new Array(parseInt(inputValue)).fill(""));
           setSelectedStyle(new Array(parseInt(inputValue)).fill(null));
+          setUserFlags(new Array(parseInt(inputValue)).fill(""));
         } catch {
           alert("Something went wrong, try again <3");
         };
@@ -92,6 +97,7 @@ function App() {
     });
 
     setCorrectAnswers(result);
+    setAppState("result");
   };
 
   const validateForm = () => {
@@ -109,20 +115,29 @@ function App() {
     };
   }
 
+  const goBack = (index) => {
+    setAppState("quiz");
+    setCurrentQuestion(index + 1);
+  }
+
   if(appState === "home") {
     return (
       <HomePage inputValue={inputValue} setInputValue={setInputValue} startQuiz={startQuiz}></HomePage> 
     );
   } else if(appState === "quiz") {
     return (
-      <QuizPage quiz={quiz} currentQuestion={currentQuestion} totalQuestions={totalQuestions} setCurrentQuestion={setCurrentQuestion} setAppState={setAppState} setUserAnswer={setUserAnswers} userAnswers={userAnswers} result={result} selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} resetData={resetData}></QuizPage>
+      <QuizPage quiz={quiz} currentQuestion={currentQuestion} totalQuestions={totalQuestions} setCurrentQuestion={setCurrentQuestion} setAppState={setAppState} setUserAnswer={setUserAnswers} userAnswers={userAnswers} result={result} selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} resetData={resetData} setUserFlags={setUserFlags} userFlags={userFlags}></QuizPage>
     )
-  } else {
+  } else if(appState === "review") {
     return (
-      <QuizResults correctAnswers={correctAnswers} totalQuestions={totalQuestions} playAgain={playAgain}/>  
+      <Review quiz={quiz} userAnswers={userAnswers} userFlags={userFlags} result={result} goBack={goBack}/>  
     )
-  }
-}
+  } else if(appState === "result") {
+    return (
+      <QuizResults correctAnswers={correctAnswers} totalQuestions={totalQuestions} playAgain={playAgain}/>
+    )
+  };
+};
 
 export default App;
 

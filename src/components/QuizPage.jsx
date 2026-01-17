@@ -3,15 +3,15 @@ import Footer from "./Footer";
 import Button from "./UI/button/Button"
 import classes from "./styles/quizpage.module.css"
 import { useEffect} from "react";
+import flagged from "../assets/review.svg"
 
-const QuizPage = ({ quiz, currentQuestion, totalQuestions, setCurrentQuestion, setAppState, setUserAnswer, userAnswers, result, selectedStyle, setSelectedStyle,resetData}) => {
+const QuizPage = ({ quiz, currentQuestion, totalQuestions, setCurrentQuestion, setAppState, setUserAnswer, userAnswers, result, selectedStyle, setSelectedStyle,resetData,setUserFlags,userFlags}) => {
 
     const btnCoord = [[1,2,1,2],[1,2,3,4],[3,4,1,2],[3,4,3,4]];
 
     useEffect(() => {
         if (currentQuestion > totalQuestions) {
-            setAppState("result");
-            result();
+            setAppState("review");
             return;
         } else if (currentQuestion === 0) {
             alert("This is the first question!!!");
@@ -34,7 +34,22 @@ const QuizPage = ({ quiz, currentQuestion, totalQuestions, setCurrentQuestion, s
                         <p className={classes.quizStage}>{`${currentQuestion}/${totalQuestions}`}</p>
                     </div>
                     <div className={classes.gap}>
-                        <Button>Mark question</Button>
+                        <Button 
+                            onClick={() => setUserFlags(() => {
+                                let arr = [...userFlags];
+                                if(arr[currentQuestion - 1] === "") {
+                                    arr[currentQuestion - 1] = "f"
+                                } else {
+                                    arr[currentQuestion - 1] = "";
+                                };
+                                return arr;
+                            })}
+                            
+                            style={{display:"flex",gap:"5px",alignItems:"center"}}
+                        >
+                            {userFlags[currentQuestion - 1] === "f" ? <img src={flagged} alt="" style={{height:"2vh"}}/> : <div className={classes.nAnswer}></div>}
+                            Mark question
+                        </Button>
                         <Button onClick={() => setCurrentQuestion(currentQuestion + 1)}>Skip</Button>
                         <Button onClick={() => setCurrentQuestion(currentQuestion + 1)}>Next</Button>
                     </div>

@@ -59,3 +59,10 @@
     border-radius: 5px;
     padding:10px 10px;
 }
+
+.nAnswer {
+    height:2vh;
+    width: 2vh;
+    background-color: #808080;
+    border-radius: 3px;
+}   
