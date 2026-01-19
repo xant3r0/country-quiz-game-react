@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
 .review {
     height:fit-content;
     width:70vw;
@@ -11,14 +17,16 @@
 
 .question {
     background-color: #E5E5E5;
-    display: flex;
-    justify-content: space-evenly;
+    display:grid;
+    grid-template-columns: calc(100%/3) calc(100%/3) calc(100%/3);
+    grid-template-rows: 6vh;
     height:6vh;
-    align-items: center;
 }
 
 .p {
     color:#000000;
+    justify-self: center;
+    align-self: center;
 }
 
 .btnGoTo{

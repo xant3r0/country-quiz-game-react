@@ -1,0 +1,45 @@
+.modalBack {
+    position:absolute;
+    z-index: 9999;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+}
+
+.modalWindow {
+    height:20vh;
+    width:30vw;
+    background-color: #343963;
+    margin-top:1vh;
+    border-radius: 5px;
+}
+
+.hDiv {
+    background-color: #272C54;
+    height:35%;
+    width:100%;
+    display: flex;
+    align-items:center;
+}
+
+.h {
+    margin-left:20px;
+}
+
+.caution {
+    margin:0 20px;
+    margin-top:25px;
+}
+
+.btnContainer {
+    width:calc(100%-20px);
+    margin:0 20px;
+    margin-top:25px;
+    gap:10px;
+    display: flex;
+    justify-content: flex-end;
+}

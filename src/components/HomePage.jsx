@@ -13,7 +13,7 @@ const HomePage = ({startQuiz,inputValue,setInputValue}) => {
                 <p id="homepage-p">Get ready to put your knowledge to the test! Our quiz offers a mix of fun challenges and interesting questions designed to keep you engaged from start to finish. Take a deep breath, hit start, and see how far you can go.</p>
                 <form id="start-quiz-form" onSubmit={event => event.preventDefault()}>
                     <label htmlFor="">How many questions you want to answer?</label>
-                    <Input value={inputValue} onChange={event => setInputValue(event.target.value)} type="number" min="5" max="25"/>
+                    <Input value={inputValue} onChange={event => setInputValue(event.target.value)} type="number" min="5" max="10"/>
                     <Button onClick={startQuiz} type="submit">Start!</Button>
                 </form>
             </section>

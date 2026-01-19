@@ -18,15 +18,16 @@ function App() {
     
   };
 
-  let [inputValue,setInputValue] = useState("");
-  let [appState,setAppState] = useState("home");                 //home | quiz | result | review
-  let [quiz,setQuiz] = useState([]);
-  let [currentQuestion,setCurrentQuestion] = useState(1);
-  let [totalQuestions,setTotalQuestions] = useState(0);
-  let [correctAnswers,setCorrectAnswers] = useState(0);
-  let [userAnswers,setUserAnswers] = useState([]);
-  let [selectedStyle,setSelectedStyle] = useState([]);
-  let [userFlags,setUserFlags] = useState([]);
+  const [inputValue,setInputValue] = useState("");
+  const [appState,setAppState] = useState("home");                 //home | quiz | result | review
+  const [quiz,setQuiz] = useState([]);
+  const [currentQuestion,setCurrentQuestion] = useState(1);
+  const [totalQuestions,setTotalQuestions] = useState(0);
+  const [correctAnswers,setCorrectAnswers] = useState(0);
+  const [userAnswers,setUserAnswers] = useState([]);
+  const [selectedStyle,setSelectedStyle] = useState([]);
+  const [userFlags,setUserFlags] = useState([]);
+  const [activeModal,setActiveModal] = useState(false);
 
   const resetData = () => {
     alert("You reseted the answers, be careful before submition!!!");
@@ -55,6 +56,7 @@ function App() {
     setUserFlags(new Array(parseInt(inputValue)).fill(""));
     setCorrectAnswers(0);
     setCurrentQuestion(1);
+    setActiveModal(false);
   } catch {
     alert("Something went wrong, try again <3");
   };
@@ -104,11 +106,8 @@ function App() {
     if(parseInt(inputValue )< 5) {
       alert("The minimum number of question you can generate is 5!!!");
       return false;
-    } else if(parseInt(inputValue )> 25) {
-      alert("The maximum number of question you can generate is 5!!!");
-      return false;
-    } else if(!Number.isInteger(parseInt(inputValue))) {
-      alert("Type a whole number!!!");
+    } else if(parseInt(inputValue) > 10) {
+      alert("The maximum number of question you can generate is 10!!!");
       return false;
     } else {
       return true;
@@ -130,15 +129,16 @@ function App() {
     )
   } else if(appState === "review") {
     return (
-      <Review quiz={quiz} userAnswers={userAnswers} userFlags={userFlags} result={result} goBack={goBack}/>  
+      <Review quiz={quiz} userAnswers={userAnswers} userFlags={userFlags} result={result} goBack={goBack} setActiveModal={setActiveModal} activeModal={activeModal}/>  
     )
   } else if(appState === "result") {
     return (
       <QuizResults correctAnswers={correctAnswers} totalQuestions={totalQuestions} playAgain={playAgain}/>
     )
   };
-};
+
+}
 
 export default App;
 
-
+//<Modal></Modal>
