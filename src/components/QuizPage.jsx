@@ -4,8 +4,11 @@ import Button from "./UI/button/Button"
 import classes from "./styles/quizpage.module.css"
 import { useEffect} from "react";
 import flagged from "../assets/review.svg"
+import SideBtn from "../assets/sidePanel.svg";
+import SidePanel from "./SidePanel";
+import Modal from "./UI/modal/Modal";
 
-const QuizPage = ({ quiz, currentQuestion, totalQuestions, setCurrentQuestion, setAppState, setUserAnswer, userAnswers, result, selectedStyle, setSelectedStyle,resetData,setUserFlags,userFlags}) => {
+const QuizPage = ({ quiz, currentQuestion, totalQuestions, setCurrentQuestion, setAppState, setUserAnswer, userAnswers, result, selectedStyle, setSelectedStyle,resetData,setUserFlags,userFlags,sideBar,setSideBar,goBack,activeModal,setActiveModal}) => {
 
     const btnCoord = [[1,2,1,2],[1,2,3,4],[3,4,1,2],[3,4,3,4]];
 
@@ -25,6 +28,8 @@ const QuizPage = ({ quiz, currentQuestion, totalQuestions, setCurrentQuestion, s
 
     return (
         <div>
+            {activeModal ? <Modal setActiveModal={setActiveModal} activeModal={activeModal} result={result}></Modal> : null}
+            {sideBar ? <SidePanel quiz={quiz} userAnswers={userAnswers} userFlags={userFlags} goBack={goBack} activeModal={activeModal} setActiveModal={setActiveModal} setSideBar={setSideBar} sideBar={sideBar}></SidePanel> : null}
             <NavBar />
             <section className={classes.quizSec}>
                 <div className={classes.quizBar}>
@@ -32,6 +37,11 @@ const QuizPage = ({ quiz, currentQuestion, totalQuestions, setCurrentQuestion, s
                         <Button onClick={() => setCurrentQuestion(currentQuestion - 1)}>Previous</Button>
                         <Button onClick={resetData}>Reset</Button>
                         <p className={classes.quizStage}>{`${currentQuestion}/${totalQuestions}`}</p>
+                    </div>
+                    <div>
+                        <Button style={{background:"none",border:"none",height:"auto",display:"flex",flexDirection:"column",justifyContent:"center",marginTop:"auto"}} onClick={() => setSideBar(!sideBar)}>
+                            <img src={SideBtn} alt=""/>
+                        </Button>
                     </div>
                     <div className={classes.gap}>
                         <Button 
@@ -95,32 +105,6 @@ const QuizPage = ({ quiz, currentQuestion, totalQuestions, setCurrentQuestion, s
         </div>
     )
 };
-
-/*
-<Button
-                                    style={
-                                        gridRowStart: el[0],
-                                        gridRowEnd: el[1],
-                                        gridColumnStart: el[2],
-                                        gridColumnEnd: el[3]
-                                    }
-                                    onClick={() => {
-                                        setUserAnswer(() => {
-                                            let arr = [...userAnswers];
-                                            arr[currentQuestion - 1] = quiz[currentQuestion - 1].answers[index];
-                                            return arr;
-                                        });
-                                        setSelectedStyle(() => {
-                                            let selected = [...selectedStyle];
-                                            selected[currentQuestion - 1] = index;
-                                            return selected;
-                                        });
-                                    }}
-                                    className={selectedStyle[currentQuestion - 1] === index ? classes.selected : classes.btn}
-                                >
-                                    {quiz[currentQuestion - 1].answers[index]}
-                                </Button>
-*/
 
 
 

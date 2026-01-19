@@ -1,0 +1,74 @@
+.sidePanel {
+    position: absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:20vw;
+    background-color: #343963;
+    padding:20px 0;
+    z-index:99;
+}
+
+.nAnswer {
+    height:2vh;
+    width: 2vh;
+    background-color: #808080;
+    border-radius: 3px;
+}  
+
+.descCon {
+    display: flex;
+    gap:10px;
+}
+
+.desTot {
+    margin-top:40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+}
+
+.question {
+    background-color: #E5E5E5;
+    display:grid;
+    grid-template-columns: calc(100%/3) calc(100%/3) calc(100%/3);
+    grid-template-rows: 6vh;
+    height:6vh;
+}
+
+.p {
+    color:#000000;
+    justify-self: center;
+    align-self: center;
+}
+
+.btnGoTo{
+    background-color:transparent;
+    border:none;
+    outline: none;
+    height:fit-content;
+    width: fit-content;
+}
+
+.checked {
+    height:2vh;
+    width: 2vh;
+}
+
+.flagged {
+    height:2vh;
+    width: 2vh;
+}
+
+.nAnswer {
+    height:2vh;
+    width: 2vh;
+    background-color: #808080;
+    border-radius: 3px;
+}   
+
+.questionsCon {
+    margin-top:40px;
+}

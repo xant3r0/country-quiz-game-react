@@ -28,6 +28,7 @@ function App() {
   const [selectedStyle,setSelectedStyle] = useState([]);
   const [userFlags,setUserFlags] = useState([]);
   const [activeModal,setActiveModal] = useState(false);
+  const [sideBar,setSideBar] = useState(false);
 
   const resetData = () => {
     alert("You reseted the answers, be careful before submition!!!");
@@ -57,6 +58,7 @@ function App() {
     setCorrectAnswers(0);
     setCurrentQuestion(1);
     setActiveModal(false);
+    setSideBar(false);
   } catch {
     alert("Something went wrong, try again <3");
   };
@@ -125,7 +127,7 @@ function App() {
     );
   } else if(appState === "quiz") {
     return (
-      <QuizPage quiz={quiz} currentQuestion={currentQuestion} totalQuestions={totalQuestions} setCurrentQuestion={setCurrentQuestion} setAppState={setAppState} setUserAnswer={setUserAnswers} userAnswers={userAnswers} result={result} selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} resetData={resetData} setUserFlags={setUserFlags} userFlags={userFlags}></QuizPage>
+      <QuizPage quiz={quiz} currentQuestion={currentQuestion} totalQuestions={totalQuestions} setCurrentQuestion={setCurrentQuestion} setAppState={setAppState} setUserAnswer={setUserAnswers} userAnswers={userAnswers} result={result} selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} resetData={resetData} setUserFlags={setUserFlags} userFlags={userFlags} sideBar={sideBar} setSideBar={setSideBar} goBack={goBack} activeModal={activeModal} setActiveModal={setActiveModal}></QuizPage>
     )
   } else if(appState === "review") {
     return (
